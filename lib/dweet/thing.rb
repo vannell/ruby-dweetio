@@ -27,11 +27,21 @@ module Dweet
             end
         end
 
-        def last
+        def last(&block)
             uri = URI("#{URL}/get/latest/dweet/for/#{@name}")
             res = Net::HTTP.get_response uri
             
-            DweetParser.parse_raw res.body if res.is_a? Net::HTTPSuccess        
+            if res.is_a? Net::HTTPSuccess        
+                collection = DweetParser.parse_raw(res.body)
+
+                if block_given?
+                    block.call collection.first
+                else
+                    return collection.first if ! collection.empty?
+                end
+            end
+
+            nil
         end
 
         def all

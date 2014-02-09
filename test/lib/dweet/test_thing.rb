@@ -23,8 +23,7 @@ describe Dweet::Thing do
     describe "when ask to retrieve last dweet" do
         it "should return the last published dweet" do
             dweet = @specific_thing.publish(@dweet)
-            assert_equal @specific_thing.last.size, 1
-            assert_equal @specific_thing.last.first, dweet
+            assert_equal @specific_thing.last, dweet
         end
     end
 end
