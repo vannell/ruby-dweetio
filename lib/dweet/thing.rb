@@ -26,5 +26,15 @@ module Dweet
                 nil
             end
         end
+
+        def last
+            uri = URI("#{URL}/get/latest/dweet/for/#{@name}")
+            res = Net::HTTP.get_response uri
+            
+            DweetParser.parse_raw res.body if res.is_a? Net::HTTPSuccess        
+        end
+
+        def all
+        end
     end
 end
