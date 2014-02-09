@@ -1,6 +1,6 @@
 # Dweet
 
-TODO: Write a gem description
+Ruby gem for querying your dweet.io things !
 
 ## Installation
 
@@ -18,7 +18,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create your Thing
+
+    thing = Thing.new "CoffeeMachine"
+
+Create a dweet and affect a Hash as content
+
+    status = Dweet.new
+    status.content = { :coffee_ready => true, :amount => "2 cups" }
+
+Publish it!
+
+    result_status = thing.publish status
+    puts result_status.created
+
+Retrieve all dweets for your Thing
+
+    things.all do |dweet|
+        puts dweet.content["coffee_ready"]
+    end
+
+    #or in another way with a more global interface
+
+    DweetIO.all_for("CoffeeMachine)
+
+Retrieve last known dweet for your Thing
+
+    thing.last do |dweet|
+        puts dweet.content["coffee_ready"]
+    end
 
 ## Contributing
 
