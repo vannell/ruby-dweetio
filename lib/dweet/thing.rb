@@ -44,7 +44,23 @@ module Dweet
             nil
         end
 
-        def all
+        def all(&block)
+            uri = URI("#{URL}/get/dweets/for/#{@name}")
+            res = Net::HTTP.get_response uri
+
+            if res.is_a? Net::HTTPSuccess        
+                collection = DweetParser.parse_raw res.body
+
+                if ! collection.nil?
+                    if block_given?
+                        collection.each {|d| block.call d }
+                    else
+                        return collection
+                    end
+                end
+            end
+
+            nil
         end
     end
 end
