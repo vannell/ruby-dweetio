@@ -17,7 +17,12 @@ module Dweet
             else
                 uri = URI("#{URL}/dweet/for/#{@name}")
             end
-            uri.query = URI.encode_www_form dweet.content
+
+            if dweet.is_a? Hash
+                uri.query = URI.encode_www_form dweet
+            else
+                uri.query = URI.encode_www_form dweet.content
+            end
 
             res = Net::HTTP.get_response uri
             if res.is_a? Net::HTTPSuccess

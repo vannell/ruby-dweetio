@@ -20,6 +20,16 @@ describe Dweet::Thing do
         end
     end
 
+    describe "when ask to publish a dummy Hash" do
+        it "should return a published dweet with dummy Hash as content" do
+            h = { "foo" => "bar", "hello" => "world" }
+            d1 = @specific_thing.publish h
+            assert_equal d1.content, h
+            d2 = @specific_thing.publish foo: :bar, hello: :world
+            assert_equal d2.content, h
+        end
+    end
+
     describe "when ask to retrieve last dweet" do
         it "should return the last published dweet" do
             dweet = @specific_thing.publish(@dweet)
