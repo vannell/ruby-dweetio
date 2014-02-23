@@ -2,7 +2,7 @@ require 'net/http'
 require_relative './dweet_parser.rb'
 
 module Dweet
-    URL = 'http://dweet.io'
+    URL = 'https://dweet.io'
 
     class Thing
         attr_accessor :name
