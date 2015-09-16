@@ -55,5 +55,5 @@ Retrieve last known dweet for your Thing
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push -u origin my-new-feature`)
 6. Merge to master (`git checkout master`) (`git merge my-new-feature`) (`git push`) 
-    although it is possible to create a pull request it is better keep 'master' in sync 
+    although it is possible to create a pull request from different branches it is better keep 'master' in sync 
 7. Create new Pull Request
